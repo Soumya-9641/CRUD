@@ -1,13 +1,14 @@
 import React,{useEffect, useState} from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
+import { BASE_URL } from '../helper/helper';
 const List = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [tasks, setTask] = useState([]);
     useEffect(() => {
         const fetchTasks = async () => {
           setIsLoading(true);
-          axios.get('http://localhost:8000/api/tasks')
+          axios.get(`${BASE_URL}/api/tasks`)
           .then(response => {
             setTask(response.data.data);
             console.log(response.data.data)
@@ -21,7 +22,7 @@ const List = () => {
       }, []);
       const handleDelete=async (id)=>{
         try {
-            await axios.delete(`http://localhost:8000/api/task/${id}`);
+            await axios.delete(`${BASE_URL}/api/task/${id}`);
             setTask((prevTasks) => prevTasks.filter((task) => task._id !== id));
           } catch (error) {
             console.error('Error deleting movie:', error);

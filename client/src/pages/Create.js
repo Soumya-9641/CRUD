@@ -1,7 +1,9 @@
 import React,{useState} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { BASE_URL } from '../helper/helper'
 const Create = () => {
+   console.log(BASE_URL)
     const navigate = useNavigate();
     const [title, setTitle] = useState('')
     const [status, setStatus] = useState('')
@@ -24,7 +26,7 @@ const Create = () => {
             console.log(description)
             const newTask = { title, status,description };
             axios
-              .post('http://localhost:8000/api/task', newTask)
+              .post(`${BASE_URL}/api/task`, newTask)
               .then((response) => {
                 console.log('New movie added:', response.data);
                 // Reset htmlForm fields after successful POST
@@ -40,6 +42,7 @@ const Create = () => {
     }
   return (
     <>
+    <p>{process.env.API_URL}</p>
         <section className="text-gray-600 body-font relative">
   <div className="container px-5 py-24 mx-auto">
     <div className="flex flex-col text-center w-full mb-12">

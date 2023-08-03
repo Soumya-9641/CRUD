@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import axios from 'axios'
 import { useParams,useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../helper/helper';
 const Update = () => {
     const navigate=useNavigate();
     const {id} = useParams();
@@ -20,7 +21,7 @@ const Update = () => {
       }
     const getMovieById = async (id) => {
         console.log(id);
-       await axios.get(`http://localhost:8000/api/task/${id}`)
+       await axios.get(`${BASE_URL}/api/task/${id}`)
         .then(response => {
             setTitle(response.data.data.title);
             setStatus(response.data.data.status);
@@ -46,7 +47,7 @@ const Update = () => {
     const payload = { title, status,description };
     console.log(payload);
     try {
-        const response = await axios.put(`http://localhost:8000/api/task/${id}`, payload);
+        const response = await axios.put(`${BASE_URL}/api/task/${id}`, payload);
         console.log('Updated movie:', response.data.data);
         window.alert('Movie updated successfully');
         setTitle('')
