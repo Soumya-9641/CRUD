@@ -8,7 +8,9 @@ require("./db/index")
 const taskRoute = require("./routes/route")
 
 const app = express()
-const apiPort = 8000
+const API_PORT = process.env.BASE_URL
+console.log(API_PORT)
+const PORT= process.env.PORT
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
@@ -22,4 +24,4 @@ app.get('/', (req, res) => {
 
 app.use('/api', taskRoute)
 
-app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`))
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`))

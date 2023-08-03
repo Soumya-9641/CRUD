@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-
-const DB = "mongodb://localhost:27017/assignment";
+// const MONGO_URI= process.env.MONGO;
+// const DB = MONGO_URI
 //const DB = "mongodb://mongo:27017/cinema";
 
 
 
- const db =mongoose.connect(DB,{
+ const db =mongoose.connect(process.env.MONGO,{
   useNewUrlParser:true,
   useUnifiedTopology: true
 }).then(()=>{
